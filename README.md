@@ -35,6 +35,19 @@ AI 生成的代码普遍不考虑未来扩展性:接口写死、分支散落、�
 
 两个 skill 可独立安装;未装前哨时后哨以降级模式运行(自底向上归纳变化点,标注 `[推断]` 并请用户确认)。
 
+## 独立代码扩展性检视
+
+[`code-extensibility-review`](code-extensibility-review/SKILL.md) 提供基于真实业务场景的专项评审，适用于 MR/PR、分支差异和指定模块，尤其适合 Java/Spring。默认只读，检查变化传播、抽象与依赖边界、扩展点接入、兼容性及回归隔离，输出带代码证据的问题和最小改进方案。
+
+它可独立使用，无需先运行前哨设计 skill；不要求变更模拟或子代理，也不以分支数量或设计模式数量判断扩展性。
+
+将 `code-extensibility-review/` 复制到 Codex 的 skills 目录（默认 `~/.codex/skills/`），可使用以下提示：
+
+```text
+使用 $code-extensibility-review 检视当前分支，
+重点分析新增支付渠道时的扩展成本与兼容风险。
+```
+
 ## 安装
 
 把 `extensibility-design/` 与 `extensibility-audit/` 复制到你所用 AI 编码助手的 skills 目录:
@@ -62,6 +75,7 @@ AI 生成的代码普遍不考虑未来扩展性:接口写死、分支散落、�
 ```
 ├── extensibility-design/     # 前哨(SKILL.md + 3 references + 3 templates)
 ├── extensibility-audit/      # 后哨(SKILL.md + 3 references + 2 templates)
+├── code-extensibility-review/ # 独立专项评审(SKILL.md + Codex UI 元数据)
 └── docs/                     # 设计 spec + 验证证据
 ```
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "代码扩展性检视"
+  short_description: "基于真实业务扩展场景，检视改动范围、耦合、扩展契约与兼容风险"
+  default_prompt: "使用 $code-extensibility-review 检视当前代码的扩展性，结合已有需求推演新增业务场景，给出有代码证据的问题和最小改进方案。"
